@@ -7,6 +7,10 @@ A feature-packed, production-ready full-stack Task Management application built 
 ![Node.js](https://img.shields.io/badge/backend-Node.js%20%2B%20Express-green)
 ![MongoDB](https://img.shields.io/badge/database-MongoDB-brightgreen)
 
+## 📸 Application Preview
+
+![TaskFlow Application Dashboard](./assets/dashboard.png)
+
 ---
 
 ## 🔥 Comprehensive Features List
@@ -76,6 +80,8 @@ A feature-packed, production-ready full-stack Task Management application built 
 
 ```text
 todo-app/
+├── assets/                 # Screenshots and application media
+│   └── dashboard.png
 ├── backend/                # Express API Server
 │   ├── config/             # Database connection setup (db.js)
 │   ├── models/             # Mongoose schemas (Todo.js)
