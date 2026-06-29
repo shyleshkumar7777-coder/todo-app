@@ -2,7 +2,7 @@
 
 A feature-packed, production-ready full-stack Task Management application built with **React**, **Node.js**, **Express**, **MongoDB**, and a custom **Semantic CSS Design System**.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
 ![React](https://img.shields.io/badge/frontend-React%2019%20%2B%20Vite-blue)
 ![Node.js](https://img.shields.io/badge/backend-Node.js%20%2B%20Express-green)
 ![MongoDB](https://img.shields.io/badge/database-MongoDB-brightgreen)
