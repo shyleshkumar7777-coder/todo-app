@@ -41,6 +41,14 @@ export default function TodoList() {
   const [filter, setFilter] = useState("all");
   const [sort, setSort] = useState("dueDate");
 
+  // State for Editing
+  const [editingId, setEditingId] = useState(null);
+  const [editTitle, setEditTitle] = useState("");
+  const [editDescription, setEditDescription] = useState("");
+  const [editDueDate, setEditDueDate] = useState("");
+  const [editPriority, setEditPriority] = useState("medium");
+  const [editCategory, setEditCategory] = useState("");
+
   const loadTodos = async () => {
     const res = await fetch("http://localhost:5000/todos");
     const data = await res.json();
@@ -98,6 +106,44 @@ export default function TodoList() {
         completed: !todo.completed,
       }),
     });
+    loadTodos();
+  };
+
+  // Editing handlers
+  const startEditing = (todo) => {
+    setEditingId(todo._id);
+    setEditTitle(todo.title || "");
+    setEditDescription(todo.description || "");
+    setEditDueDate(todo.dueDate ? dateKey(todo.dueDate) : "");
+    setEditPriority(todo.priority || "medium");
+    setEditCategory(todo.category || "");
+  };
+
+  const cancelEditing = () => {
+    setEditingId(null);
+  };
+
+  const saveEdit = async (id) => {
+    if (!editTitle.trim()) {
+      alert("Title Required");
+      return;
+    }
+
+    await fetch(`http://localhost:5000/todos/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: editTitle.trim(),
+        description: editDescription.trim(),
+        dueDate: editDueDate || null,
+        priority: editPriority,
+        category: editCategory.trim(),
+      }),
+    });
+
+    setEditingId(null);
     loadTodos();
   };
 
@@ -272,6 +318,79 @@ export default function TodoList() {
                 ? "badge-status-overdue"
                 : "badge-status-pending";
 
+            const isEditing = editingId === todo._id;
+
+            if (isEditing) {
+              return (
+                <div key={todo._id} className="setup-card-item" style={{ borderColor: "var(--primary-color)" }}>
+                  <div className="setup-details" style={{ gap: "var(--space-12)" }}>
+                    <div className="template-type">
+                      <h3 className="setup-card-title" style={{ fontSize: "0.95rem", color: "var(--display-onlight-secondary)" }}>
+                        Editing Task
+                      </h3>
+                      <span className={`badge-status ${statusClass}`}>{statusLabel}</span>
+                    </div>
+
+                    <input
+                      className="setup-input"
+                      value={editTitle}
+                      onChange={(e) => setEditTitle(e.target.value)}
+                      placeholder="Title"
+                    />
+
+                    <input
+                      className="setup-input"
+                      value={editDescription}
+                      onChange={(e) => setEditDescription(e.target.value)}
+                      placeholder="Description"
+                    />
+
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-8)" }}>
+                      <input
+                        className="setup-input"
+                        type="date"
+                        value={editDueDate}
+                        onChange={(e) => setEditDueDate(e.target.value)}
+                      />
+                      <select
+                        className="setup-select"
+                        value={editPriority}
+                        onChange={(e) => setEditPriority(e.target.value)}
+                      >
+                        {priorities.map((item) => (
+                          <option key={item} value={item}>
+                            {item[0].toUpperCase() + item.slice(1)} priority
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <input
+                      className="setup-input"
+                      placeholder="Category"
+                      value={editCategory}
+                      onChange={(e) => setEditCategory(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="accessory-view">
+                    <button
+                      className="btn btn-sm btn-primary"
+                      onClick={() => saveEdit(todo._id)}
+                    >
+                      Save
+                    </button>
+                    <button
+                      className="btn btn-sm btn-secondary"
+                      onClick={cancelEditing}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <div key={todo._id} className="setup-card-item">
                 <div className="setup-details">
@@ -297,6 +416,13 @@ export default function TodoList() {
                     onClick={() => toggleCompleted(todo)}
                   >
                     {todo.completed ? "Undo" : "Complete"}
+                  </button>
+
+                  <button
+                    className="btn btn-sm btn-secondary"
+                    onClick={() => startEditing(todo)}
+                  >
+                    Edit
                   </button>
 
                   <button
