@@ -168,8 +168,4 @@ Ensure you have the following installed on your machine:
 | `PUT` | `/todos/:id` | Update an existing todo | `{ title, description, dueDate, priority, category, completed }` |
 | `DELETE`| `/todos/:id` | Delete a todo by ID | None |
 
----
 
-## 📝 License
-
-This project is licensed under the MIT License.
