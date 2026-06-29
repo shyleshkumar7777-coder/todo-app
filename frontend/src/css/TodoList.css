@@ -1,0 +1,651 @@
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
+
+    color: white;
+
+    padding: 70px 0;
+
+    margin-bottom: 40px;
+
+    box-shadow: var(--shadow);
+
+}
+
+.hero h1 {
+
+    margin-bottom: 12px;
+
+}
+
+.hero p {
+
+    color: rgba(255,255,255,.8);
+
+    font-size: 18px;
+
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.todo-page{
+
+    min-height:100vh;
+
+    background:var(--background);
+
+}
+
+.todo-content{
+
+    padding-bottom:60px;
+
+}
+
+
+/* =========================================================
+   ADD TODO
+========================================================= */
+
+.add-section{
+
+    margin-bottom:40px;
+
+}
+
+.add-card{
+
+    padding:32px;
+
+}
+
+.add-title{
+
+    margin-bottom:24px;
+
+}
+
+.todo-form{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        auto;
+
+    gap:18px;
+
+    align-items:center;
+
+}
+
+.todo-form input{
+
+    height:52px;
+
+}
+
+.todo-form button{
+
+    height:52px;
+
+    min-width:170px;
+
+}
+
+
+/* =========================================================
+   SEARCH SECTION
+========================================================= */
+
+.search-section{
+
+    margin-bottom:40px;
+
+}
+
+.search-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:24px;
+
+}
+
+.search-input{
+
+    flex:1;
+
+}
+
+.search-input input{
+
+    width:100%;
+
+}
+
+.filter{
+
+    width:180px;
+
+}
+
+.filter select{
+
+    width:100%;
+
+}
+
+
+/* =========================================================
+   INPUT PLACEHOLDER
+========================================================= */
+
+input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title{
+
+    margin-bottom:20px;
+
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:80px;
+
+    border:1px dashed var(--border);
+
+    border-radius:var(--radius);
+
+    color:var(--text-light);
+
+    background:white;
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:80px;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:992px){
+
+    .todo-form{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .todo-form button{
+
+        width:100%;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .hero{
+
+        padding:50px 0;
+
+    }
+
+    .hero h1{
+
+        font-size:38px;
+
+    }
+
+    .search-card{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .filter{
+
+        width:100%;
+
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    .hero{
+
+        text-align:center;
+
+    }
+
+    .add-card{
+
+        padding:22px;
+
+    }
+
+    .search-card{
+
+        padding:20px;
+
+    }
+
+}
+
+/* =========================================================
+   TODO GRID
+========================================================= */
+
+.todo-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(320px,1fr)
+        );
+
+    gap:28px;
+
+}
+
+
+/* =========================================================
+   TODO CARD
+========================================================= */
+
+.todo-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:24px;
+
+    transition:var(--transition);
+
+    box-shadow:var(--shadow);
+
+    min-height:280px;
+
+}
+
+.todo-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow-hover);
+
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.todo-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:16px;
+
+    margin-bottom:18px;
+
+}
+
+.todo-title{
+
+    font-size:1.4rem;
+
+    font-weight:700;
+
+    color:var(--text);
+
+    word-break:break-word;
+
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.todo-description{
+
+    color:var(--text-light);
+
+    line-height:1.7;
+
+    flex:1;
+
+    margin-bottom:24px;
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.todo-status{
+
+    margin-bottom:22px;
+
+}
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.badge-success{
+
+    background:var(--success);
+
+}
+
+.badge-warning{
+
+    background:var(--warning);
+
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.todo-actions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-top:auto;
+
+}
+
+.todo-actions .btn{
+
+    flex:1;
+
+    min-width:110px;
+
+}
+
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.todo-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:22px;
+
+    padding-top:18px;
+
+    border-top:1px solid var(--border);
+
+    font-size:14px;
+
+    color:var(--text-light);
+
+}
+
+
+/* =========================================================
+   ICON BUTTON
+========================================================= */
+
+.icon-btn{
+
+    width:42px;
+
+    height:42px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:12px;
+
+    transition:var(--transition);
+
+}
+
+.icon-btn:hover{
+
+    background:#f1f5f9;
+
+}
+
+
+/* =========================================================
+   HOVER ANIMATION
+========================================================= */
+
+.todo-card:hover .todo-title{
+
+    color:var(--success);
+
+}
+
+
+/* =========================================================
+   BUTTON EFFECTS
+========================================================= */
+
+.btn{
+
+    transition:all .25s ease;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.btn:active{
+
+    transform:scale(.97);
+
+}
+
+
+/* =========================================================
+   EMPTY CARD
+========================================================= */
+
+.empty-card{
+
+    text-align:center;
+
+    padding:70px 20px;
+
+    border:2px dashed var(--border);
+
+    border-radius:var(--radius);
+
+    background:white;
+
+}
+
+.empty-card h2{
+
+    margin-bottom:12px;
+
+}
+
+.empty-card p{
+
+    color:var(--text-light);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:992px){
+
+    .todo-grid{
+
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(280px,1fr)
+            );
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .todo-card{
+
+        padding:20px;
+
+    }
+
+    .todo-title{
+
+        font-size:1.2rem;
+
+    }
+
+    .todo-actions{
+
+        flex-direction:column;
+
+    }
+
+    .todo-actions .btn{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .todo-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .todo-footer{
+
+        flex-direction:column;
+
+        gap:10px;
+
+        align-items:flex-start;
+
+    }
+
+}
